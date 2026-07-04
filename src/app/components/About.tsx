@@ -1,6 +1,19 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
+
+const principles = [
+  "Turn rough product flows into reliable systems",
+  "Keep admin tools fast, clear, and maintainable",
+  "Connect payments, CRM, AI, and analytics without drama",
+]
+
+const timeline = [
+  ["2023", "Graduated from FPT College and moved deeper into production web systems."],
+  ["2024 - 2025", "Built Laravel APIs, Filament dashboards, CRM sync, and AI learning services."],
+  ["2026", "Focused on Next.js commerce, NestJS services, payment flows, and delivery quality."],
+]
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -9,108 +22,83 @@ export default function About() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.2 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current)
 
     return () => observer.disconnect()
   }, [])
 
-  const stats = [
-    { value: "3", label: "Years Experience" },
-    { value: "2023", label: "FPT College Graduate" },
-    { value: "3", label: "Production Domains" },
-  ]
-
   return (
-    <section ref={sectionRef} id="about" className="relative overflow-hidden bg-white py-24 dark:bg-zinc-950 lg:py-32">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+    <section ref={sectionRef} id="about" className="relative overflow-hidden bg-[#fffaf0] py-24 dark:bg-[#151827] lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div
-            className={`lg:col-span-4 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            className={`transition-all duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            <div className="sticky top-28 border border-zinc-200 bg-zinc-50 p-6 shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
-              <div className="mb-8 flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center bg-zinc-950 font-playfair text-4xl text-white dark:bg-zinc-50 dark:text-zinc-950">
-                  HV
-                </div>
-                <div>
-                  <p className="font-semibold text-zinc-950 dark:text-zinc-50">Nguyen Van Hieu</p>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">Fullstack Developer</p>
-                </div>
-              </div>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#d97706] dark:text-amber-200">
+              About
+            </p>
+            <h2 className="mt-4 max-w-xl text-4xl font-black leading-[0.95] text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
+              Systems that feel simple because the hard parts are handled.
+            </h2>
+          </div>
 
-              <div className="space-y-4">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="flex items-end justify-between border-b border-zinc-200 pb-4 last:border-b-0 last:pb-0 dark:border-zinc-800">
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">{stat.label}</p>
-                    <p className="text-3xl font-bold text-zinc-950 dark:text-zinc-50">{stat.value}</p>
+          <div
+            className={`grid gap-6 transition-all duration-700 delay-100 md:grid-cols-[220px_minmax(0,1fr)] ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+            }`}
+          >
+            <div className="relative aspect-[3/4] overflow-hidden border border-amber-900/10 bg-[#ffe7c2] shadow-xl shadow-amber-900/10 dark:border-amber-200/15 dark:bg-white/10">
+              <Image
+                src="/avt.jpg"
+                alt="Nguyen Van Hieu portrait"
+                fill
+                sizes="220px"
+                className="object-cover object-top"
+              />
+            </div>
+
+            <div className="border-t border-amber-900/10 pt-6 dark:border-amber-200/15 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+              <p className="text-lg leading-8 text-zinc-700 dark:text-zinc-300">
+                I am a Fullstack Developer with 3 years of experience building scalable web and mobile application backends, production APIs, and internal dashboards for commercial products.
+              </p>
+              <p className="mt-5 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+                My strongest work sits at the intersection of product logic and engineering execution: Laravel systems, modern frontend flows, payment integration, CRM synchronization, automation workflows, and AI-powered services with OpenAI and Gemini APIs.
+              </p>
+
+              <div className="mt-8 grid gap-3">
+                {principles.map((item, index) => (
+                  <div key={item} className="grid grid-cols-[42px_minmax(0,1fr)] items-start border-t border-amber-900/10 pt-3 dark:border-amber-200/15">
+                    <span className="text-sm font-black text-[#ff6b4a] dark:text-orange-200">
+                      0{index + 1}
+                    </span>
+                    <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="lg:col-span-8">
+        <div className="mt-16 grid border-y border-amber-900/10 bg-white/45 dark:border-amber-200/15 dark:bg-white/5 md:grid-cols-3">
+          {timeline.map(([year, text], index) => (
             <div
-              className={`transition-all duration-700 delay-100 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              key={year}
+              className={`p-5 md:border-r md:border-amber-900/10 md:last:border-r-0 dark:md:border-amber-200/15 transition-all duration-700 ${
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
               }`}
+              style={{ transitionDelay: `${200 + index * 100}ms` }}
             >
-              <span className="inline-block text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase mb-4">
-                About Me
-              </span>
+              <p className="text-3xl font-black text-[#0f766e] dark:text-cyan-100">{year}</p>
+              <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">{text}</p>
             </div>
-
-            <h2
-              className={`max-w-3xl text-3xl lg:text-5xl font-bold text-zinc-900 dark:text-zinc-50 mb-8 font-playfair leading-tight transition-all duration-700 delay-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-            >
-              Building Production Systems with{" "}
-              <span className="gradient-text">APIs, Admin Tools & AI</span>
-            </h2>
-
-            <div
-              className={`grid gap-6 md:grid-cols-2 transition-all duration-700 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-            >
-              <div className="border-l-2 border-indigo-500 pl-5">
-                <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                  I&apos;m a Fullstack Developer with 3 years of experience building scalable web and mobile
-                  applications, production-ready systems, APIs, and admin dashboards for commercial products.
-                </p>
-              </div>
-              <div className="border-l-2 border-emerald-500 pl-5">
-                <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                  My work spans Laravel, modern frontend stacks, payment gateway integration, CRM sync,
-                  automation workflows, and AI-powered services using OpenAI and Gemini APIs.
-                </p>
-              </div>
-            </div>
-
-            <div
-              className={`mt-10 grid gap-4 sm:grid-cols-3 transition-all duration-700 delay-400 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-            >
-              {["Payment integrations", "AI-powered services", "Production-ready APIs"].map((item) => (
-                <div key={item} className="border border-zinc-200 bg-zinc-50 p-4 text-sm font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
-                  <p>{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

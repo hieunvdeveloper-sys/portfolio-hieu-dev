@@ -3,59 +3,59 @@
 @tailwind utilities;
 
 :root {
-  --background: #fafafa;
-  --foreground: #18181b;
+  --background: #e8fbf4;
+  --foreground: #0f172a;
   --card: #ffffff;
   --card-foreground: #18181b;
   --popover: #ffffff;
   --popover-foreground: #18181b;
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
+  --primary: #0f766e;
+  --primary-foreground: #ffffff;
+  --secondary: #dff3ff;
+  --secondary-foreground: #0f172a;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
-  --accent: #f4f4f5;
-  --accent-foreground: #18181b;
+  --accent: #ff6b4a;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #fafafa;
   --border: #e4e4e7;
   --input: #ffffff;
-  --ring: #18181b;
+  --ring: #0f766e;
   --radius: 0.75rem;
 
   /* Brand accent */
-  --accent-primary: #6366f1;
-  --accent-primary-light: #818cf8;
-  --accent-secondary: #ec4899;
-  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  --accent-primary: #0f766e;
+  --accent-primary-light: #2dd4bf;
+  --accent-secondary: #ff6b4a;
+  --accent-gradient: linear-gradient(135deg, #0f766e 0%, #0284c7 45%, #ff6b4a 100%);
 }
 
 .dark {
-  --background: #09090b;
+  --background: #071827;
   --foreground: #fafafa;
-  --card: #18181b;
+  --card: #0b2638;
   --card-foreground: #fafafa;
-  --popover: #18181b;
+  --popover: #0b2638;
   --popover-foreground: #fafafa;
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
-  --secondary: #27272a;
+  --primary: #7dd3fc;
+  --primary-foreground: #071827;
+  --secondary: #123447;
   --secondary-foreground: #fafafa;
-  --muted: #27272a;
+  --muted: #123447;
   --muted-foreground: #a1a1aa;
-  --accent: #27272a;
+  --accent: #ffb703;
   --accent-foreground: #fafafa;
   --destructive: #7f1d1d;
   --destructive-foreground: #fafafa;
   --border: #27272a;
-  --input: #18181b;
-  --ring: #d4d4d8;
+  --input: #0b2638;
+  --ring: #7dd3fc;
 
   /* Brand accent dark */
-  --accent-primary: #818cf8;
-  --accent-primary-light: #a5b4fc;
-  --accent-secondary: #f472b6;
+  --accent-primary: #7dd3fc;
+  --accent-primary-light: #67e8f9;
+  --accent-secondary: #ffb703;
 }
 
 @layer base {
@@ -73,7 +73,7 @@
   }
 
   ::selection {
-    @apply bg-indigo-500/20 text-indigo-900 dark:text-indigo-100;
+    @apply bg-emerald-500/20 text-emerald-900 dark:text-emerald-100;
   }
 }
 
@@ -155,12 +155,17 @@
 
   /* Dot grid pattern */
   .dot-pattern {
-    background-image: radial-gradient(circle, #d4d4d8 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(15, 118, 110, 0.28) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
   .dark .dot-pattern {
-    background-image: radial-gradient(circle, #3f3f46 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(125, 211, 252, 0.22) 1px, transparent 1px);
+  }
+
+  .vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 }
 

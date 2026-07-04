@@ -13,9 +13,8 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      // Update active section based on scroll position
       const sections = ["home", "about", "skills", "work", "contact"]
-      for (const section of sections.reverse()) {
+      for (const section of [...sections].reverse()) {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
@@ -43,22 +42,22 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl shadow-sm border-b border-zinc-200/50 dark:border-zinc-800/50"
+          ? "border-b border-teal-900/10 bg-[#e8fbf4]/85 backdrop-blur-xl dark:border-cyan-200/10 dark:bg-[#081f2d]/85"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           <a
             href="#home"
-            className="text-xl font-bold text-zinc-900 dark:text-zinc-50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            className="group flex items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-teal-950 transition-colors dark:text-cyan-50"
           >
-            <span className="font-playfair">HV</span>
-            <span className="text-indigo-600 dark:text-indigo-400">.</span>
+            <span className="flex h-8 w-8 items-center justify-center bg-[#0f766e] text-xs text-white transition-colors group-hover:bg-[#ff6b4a] dark:bg-[#7dd3fc] dark:text-slate-950">
+              HV
+            </span>
+            Portfolio
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = activeSection === item.href.slice(1)
@@ -66,29 +65,28 @@ export default function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg ${
+                  className={`relative px-3 py-2 text-sm font-semibold transition-colors duration-200 ${
                     isActive
-                      ? "text-indigo-600 dark:text-indigo-400"
-                      : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                      ? "text-teal-950 dark:text-cyan-50"
+                      : "text-teal-900/60 hover:text-teal-950 dark:text-cyan-100/60 dark:hover:text-cyan-50"
                   }`}
                 >
                   {item.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-indigo-600 dark:bg-indigo-400" />
+                    <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-[#ff6b4a]" />
                   )}
                 </a>
               )
             })}
-            <div className="ml-4 pl-4 border-l border-zinc-200 dark:border-zinc-700">
+            <div className="ml-3 border-l border-teal-900/10 pl-4 dark:border-cyan-200/10">
               <ThemeToggle />
             </div>
           </div>
 
-          {/* Mobile Navigation Button */}
           <div className="md:hidden flex items-center gap-4">
             <ThemeToggle />
             <button
-              className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="border border-teal-900/15 bg-white/40 p-2 text-teal-900 transition-colors hover:bg-[#ff6b4a] hover:text-white dark:border-cyan-200/15 dark:bg-white/10 dark:text-cyan-100 dark:hover:bg-[#ffb703] dark:hover:text-slate-950"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
@@ -102,23 +100,22 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       <div
         className={`md:hidden transition-all duration-300 overflow-hidden ${
           isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 px-4 py-4 space-y-1">
+        <div className="space-y-1 border-t border-teal-900/10 bg-[#e8fbf4] px-4 py-4 dark:border-cyan-200/10 dark:bg-[#081f2d]">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.slice(1)
             return (
               <a
                 key={item.name}
                 href={item.href}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                className={`block px-4 py-3 text-sm font-semibold transition-colors ${
                   isActive
-                    ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
-                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    ? "bg-[#0f766e] text-white dark:bg-[#7dd3fc] dark:text-slate-950"
+                    : "text-teal-900/70 hover:bg-white/70 dark:text-cyan-100/70 dark:hover:bg-white/10"
                 }`}
                 onClick={() => setIsOpen(false)}
               >

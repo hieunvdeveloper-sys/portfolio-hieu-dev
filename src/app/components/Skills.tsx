@@ -1,16 +1,52 @@
 "use client"
 
 import {
-  CodeBracketIcon,
-  ServerIcon,
-  CloudIcon,
-  DevicePhoneMobileIcon,
+  BeakerIcon,
   CircleStackIcon,
-  GlobeAltIcon,
+  CloudIcon,
+  CodeBracketIcon,
   CommandLineIcon,
-  BeakerIcon
+  DevicePhoneMobileIcon,
+  ServerIcon,
 } from "@heroicons/react/24/outline"
 import { useEffect, useRef, useState } from "react"
+
+const capabilities = [
+  {
+    label: "Interface",
+    icon: CodeBracketIcon,
+    summary: "Responsive product screens, commerce flows, auth, and dashboards.",
+    tools: ["React", "Next.js", "TypeScript", "Tailwind", "Zustand"],
+    accent: "text-[#0284c7] dark:text-sky-200",
+  },
+  {
+    label: "Services",
+    icon: ServerIcon,
+    summary: "APIs, auth, admin workflows, business logic, and data handling.",
+    tools: ["Laravel", "PHP", "NestJS", "JWT", "Filament"],
+    accent: "text-[#0f766e] dark:text-emerald-200",
+  },
+  {
+    label: "Integration",
+    icon: DevicePhoneMobileIcon,
+    summary: "Payment gateways, CRM sync, AI APIs, and third-party REST systems.",
+    tools: ["Stripe", "Square", "OpenAI", "Gemini", "GraphQL"],
+    accent: "text-[#ff6b4a] dark:text-orange-200",
+  },
+  {
+    label: "Delivery",
+    icon: CloudIcon,
+    summary: "Deployment support, automation, testing, and production readiness.",
+    tools: ["Docker", "Nginx", "GitHub Actions", "Playwright", "Jest"],
+    accent: "text-[#b7791f] dark:text-amber-200",
+  },
+]
+
+const layers = [
+  { label: "Data", icon: CircleStackIcon, items: ["MySQL", "PostgreSQL", "MongoDB", "Redis"] },
+  { label: "Automation", icon: CommandLineIcon, items: ["N8N", "CI checks", "Webhooks", "API testing"] },
+  { label: "Quality", icon: BeakerIcon, items: ["Usage analytics", "RBAC", "Secure tokens", "Query tuning"] },
+]
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false)
@@ -19,245 +55,84 @@ export default function Skills() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.1 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current)
 
     return () => observer.disconnect()
   }, [])
 
-  const skills = [
-    {
-      icon: <CodeBracketIcon className="w-6 h-6" />,
-      title: "Web App Engineering",
-      description: "Building responsive commercial web applications with Next.js, React, TypeScript, Tailwind, Zustand, and NextAuth.",
-      color: "indigo"
-    },
-    {
-      icon: <ServerIcon className="w-6 h-6" />,
-      title: "Backend & Admin Systems",
-      description: "Creating production APIs, Filament admin dashboards, JWT auth, and business workflows with Laravel, PHP, and NestJS.",
-      color: "emerald"
-    },
-    {
-      icon: <DevicePhoneMobileIcon className="w-6 h-6" />,
-      title: "Integrations",
-      description: "Integrating payment gateways, CRM sync, Square Payments, Stripe APIs, OpenAI, Gemini, and third-party REST services.",
-      color: "violet"
-    },
-    {
-      icon: <CloudIcon className="w-6 h-6" />,
-      title: "Automation & Delivery",
-      description: "Shipping maintainable systems with Docker, Nginx, GitHub Actions, N8N workflow automation, Playwright, and Jest.",
-      color: "rose"
-    },
-  ]
-
-  const technologyGroups = [
-    {
-      category: "Frontend",
-      icon: <CodeBracketIcon className="w-5 h-5" />,
-      color: "blue",
-      technologies: ["JavaScript", "TypeScript", "Next.js", "React", "Tailwind", "Zustand"]
-    },
-    {
-      category: "Backend",
-      icon: <ServerIcon className="w-5 h-5" />,
-      color: "emerald",
-      technologies: ["PHP", "Laravel", "WordPress", "NestJS", "Filament", "JWT"]
-    },
-    {
-      category: "Databases",
-      icon: <CircleStackIcon className="w-5 h-5" />,
-      color: "amber",
-      technologies: ["MySQL", "PostgreSQL", "MongoDB", "Redis"]
-    },
-    {
-      category: "APIs",
-      icon: <GlobeAltIcon className="w-5 h-5" />,
-      color: "violet",
-      technologies: ["RESTful", "GraphQL", "Stripe API", "Square Payments", "OpenAI", "Gemini API"]
-    },
-    {
-      category: "Automation",
-      icon: <CommandLineIcon className="w-5 h-5" />,
-      color: "cyan",
-      technologies: ["N8N workflow", "Playwright", "Docker", "Nginx", "GitHub Actions"]
-    },
-    {
-      category: "Testing",
-      icon: <BeakerIcon className="w-5 h-5" />,
-      color: "rose",
-      technologies: ["Jest", "API testing", "Usage analytics"]
-    }
-  ]
-
-  const categoryColors: Record<string, { text: string; pill: string; border: string }> = {
-    blue: {
-      text: "text-blue-600 dark:text-blue-400",
-      pill: "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300",
-      border: "border-blue-200 dark:border-blue-800/50"
-    },
-    emerald: {
-      text: "text-emerald-600 dark:text-emerald-400",
-      pill: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300",
-      border: "border-emerald-200 dark:border-emerald-800/50"
-    },
-    amber: {
-      text: "text-amber-600 dark:text-amber-400",
-      pill: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300",
-      border: "border-amber-200 dark:border-amber-800/50"
-    },
-    violet: {
-      text: "text-violet-600 dark:text-violet-400",
-      pill: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300",
-      border: "border-violet-200 dark:border-violet-800/50"
-    },
-    cyan: {
-      text: "text-cyan-600 dark:text-cyan-400",
-      pill: "bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300",
-      border: "border-cyan-200 dark:border-cyan-800/50"
-    },
-    rose: {
-      text: "text-rose-600 dark:text-rose-400",
-      pill: "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300",
-      border: "border-rose-200 dark:border-rose-800/50"
-    }
-  }
-
-  const colorClasses = {
-    indigo: {
-      bg: "bg-indigo-100 dark:bg-indigo-900/30",
-      text: "text-indigo-600 dark:text-indigo-400",
-      border: "group-hover:border-indigo-200 dark:group-hover:border-indigo-800"
-    },
-    emerald: {
-      bg: "bg-emerald-100 dark:bg-emerald-900/30",
-      text: "text-emerald-600 dark:text-emerald-400",
-      border: "group-hover:border-emerald-200 dark:group-hover:border-emerald-800"
-    },
-    violet: {
-      bg: "bg-violet-100 dark:bg-violet-900/30",
-      text: "text-violet-600 dark:text-violet-400",
-      border: "group-hover:border-violet-200 dark:group-hover:border-violet-800"
-    },
-    rose: {
-      bg: "bg-rose-100 dark:bg-rose-900/30",
-      text: "text-rose-600 dark:text-rose-400",
-      border: "group-hover:border-rose-200 dark:group-hover:border-rose-800"
-    }
-  }
-
   return (
-    <section ref={sectionRef} id="skills" className="relative overflow-hidden border-y border-zinc-200 bg-zinc-50 py-24 dark:border-zinc-800 dark:bg-zinc-900 lg:py-32">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <div>
-            <div className="lg:sticky lg:top-28">
-              <span
-                className={`inline-block text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase mb-4 transition-all duration-700 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                What I Do
-              </span>
-              <h2
-                className={`text-3xl lg:text-5xl font-bold text-zinc-900 dark:text-zinc-50 mb-5 font-playfair transition-all duration-700 delay-100 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                Technical Skills
-              </h2>
-              <p
-                className={`text-lg text-zinc-600 dark:text-zinc-400 transition-all duration-700 delay-200 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                Fullstack developer focused on Laravel, Next.js, production APIs, admin dashboards, payment flows, automation, and AI services.
-              </p>
-            </div>
+    <section ref={sectionRef} id="skills" className="relative overflow-hidden bg-[#dff3ff] py-24 text-slate-950 dark:bg-[#083344] dark:text-white lg:py-32">
+      <div className="absolute inset-0 dot-pattern opacity-35 dark:opacity-15" />
+      <div className="absolute inset-x-0 top-0 h-44 bg-[#0f766e]/10 dark:bg-cyan-300/10" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16">
+          <div
+            className={`lg:sticky lg:top-28 lg:self-start transition-all duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+            }`}
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0f766e] dark:text-cyan-200">
+              Capability Map
+            </p>
+            <h2 className="mt-4 text-4xl font-black leading-none sm:text-5xl">
+              From screen to server to shipped.
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-7 text-slate-700 dark:text-cyan-100/75">
+              The stack is organized around outcomes: interfaces people can use, APIs teams can trust, and integrations that keep business data moving.
+            </p>
           </div>
 
-          <div className="space-y-10">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {skills.map((skill, index) => {
-                const colors = colorClasses[skill.color as keyof typeof colorClasses]
-                return (
-                  <div
-                    key={skill.title}
-                    className={`group border border-zinc-200 bg-white p-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-soft dark:border-zinc-800 dark:bg-zinc-950 ${colors.border} ${
-                      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                    }`}
-                    style={{ transitionDelay: `${300 + index * 100}ms` }}
-                  >
-                    <div className={`mb-4 flex h-11 w-11 items-center justify-center ${colors.bg}`}>
-                      <span className={colors.text}>{skill.icon}</span>
-                    </div>
-                    <h3 className="mb-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                      {skill.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                      {skill.description}
-                    </p>
-                  </div>
-                )
-              })}
-            </div>
+          <div className="grid gap-4">
+            {capabilities.map((capability, index) => {
+              const Icon = capability.icon
 
-            <div>
-              <div className="mb-5 flex items-end justify-between gap-4 border-b border-zinc-200 pb-4 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  Technologies I Work With
-                </h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">Toolbox</p>
-              </div>
-
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                {technologyGroups.map((group, groupIndex) => {
-                  const colors = categoryColors[group.color]
-                  return (
-                <div
-                  key={groupIndex}
-                  className={`group relative border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft dark:bg-zinc-950 ${colors.border}`}
+              return (
+                <article
+                  key={capability.label}
+                  className={`grid gap-5 border border-sky-900/10 bg-white/70 p-5 shadow-sm transition-all duration-700 hover:-translate-y-1 hover:bg-white md:grid-cols-[180px_minmax(0,1fr)] dark:border-cyan-200/15 dark:bg-white/10 dark:hover:bg-white/15 ${
+                    isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${120 + index * 100}ms` }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-9 h-9 bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center ${colors.text}`}>
-                      {group.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">
-                        {group.category}
-                      </h4>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                        {group.technologies.length} technologies
-                      </p>
+                  <div>
+                    <Icon className={`h-7 w-7 ${capability.accent}`} />
+                    <h3 className="mt-4 text-2xl font-black">{capability.label}</h3>
+                  </div>
+                  <div>
+                    <p className="max-w-2xl text-base leading-7 text-slate-700 dark:text-cyan-100/75">{capability.summary}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {capability.tools.map((tool) => (
+                        <span key={tool} className="border border-sky-900/10 bg-[#e8fbf4] px-3 py-1.5 text-xs font-semibold text-teal-900 dark:border-cyan-200/15 dark:bg-[#082f49] dark:text-cyan-100">
+                          {tool}
+                        </span>
+                      ))}
                     </div>
                   </div>
-
-                  {/* Technology pills */}
-                  <div className="flex flex-wrap gap-2">
-                    {group.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className={`px-3 py-1.5 text-sm font-medium ${colors.pill} transition-transform duration-200 hover:scale-105`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                  )
-                })}
-              </div>
-            </div>
+                </article>
+              )
+            })}
           </div>
+        </div>
+
+        <div className="mt-12 grid gap-px bg-sky-900/10 dark:bg-cyan-200/15 md:grid-cols-3">
+          {layers.map((layer) => {
+            const Icon = layer.icon
+
+            return (
+              <div key={layer.label} className="bg-white/70 p-5 dark:bg-[#082f49]">
+                <div className="flex items-center gap-3">
+                  <Icon className="h-5 w-5 text-[#ff6b4a] dark:text-amber-200" />
+                  <h3 className="font-semibold">{layer.label}</h3>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-slate-700 dark:text-cyan-100/70">{layer.items.join(" / ")}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
